@@ -76,7 +76,7 @@ const readPost = async (slug, snip = false) => {
     // try to resolve absolute links back to repl.it
     const contentMd = rawContent
         .trim()
-        .replace(/(\]\()(\/.+\))/g, "$1https://replit.com$2");
+        .replace(/(\]\()(\/.+\))/g, "$1https://oanotesblog.vercel.app$2");
 
     let previewMd = "";
     const ender = contentMd.indexOf("[](preview end)");
@@ -181,12 +181,12 @@ const app = express();
 app.use(express.static("static", { maxAge: '1y', setHeaders: overrideStaticCacheControl }));
 
 function overrideStaticCacheControl(res, path) {
-  const shortMimes = ['text/html', 'text/css', 'application/javascript'];
-  if (path.endsWith('.css') || path.endsWith('.html') || path.endsWith('.js')) {
-    // don't cache html/css/js as much
-    // let a stale version be served for longer while revalidation happens asynchronously
-    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=600')
-  }
+    const shortMimes = ['text/html', 'text/css', 'application/javascript'];
+    if (path.endsWith('.css') || path.endsWith('.html') || path.endsWith('.js')) {
+        // don't cache html/css/js as much
+        // let a stale version be served for longer while revalidation happens asynchronously
+        res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=600')
+    }
 }
 
 app.use(
