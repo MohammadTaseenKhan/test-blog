@@ -2,9 +2,18 @@
    "version": 2,
    "name": "replit-docs",
    "builds": [
-      { "src": "index.js", "use": "@vercel/node" }
+     { "src": "index.js", "use": "@vercel/node" }
    ],
    "routes": [
-      { "src": "/(.*)", "dest": "/index.js" }
+     { "handle": "filesystem" },
+     {
+       "src": "/index.js",
+       "dest": "/index.js"
+     },
+     {
+       "src": "/.*",
+       "dest": "/index.js"
+     }
    ]
-}
+ }
+ 
